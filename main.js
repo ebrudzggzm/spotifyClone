@@ -1,4 +1,4 @@
-import { renderSongList, playerDiv2,filteredSongs } from "./ui.js";
+import { renderSongList, playerDiv2, filteredSongs } from "./ui.js";
 
 let data;
 const getInfo = async () => {
@@ -8,7 +8,7 @@ const getInfo = async () => {
       {
         headers: {
           "X-RapidAPI-Key":
-            "66d3fd6e24msha0efa832d406a0ap182abcjsn1b118c6979a1",
+            "0088e954bemsh3f8f6ef04cb185ep12e058jsn9d9f93d2b743",
           "X-RapidAPI-Host": "shazam.p.rapidapi.com",
         },
       }
@@ -27,8 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
   getInfo().then(() => renderSongList(data.tracks));
 });
 
-
-
 const listCards = document.querySelector("#list");
 listCards.addEventListener("click", (e) => {
   console.log("neye tıklandı", e, e.target.dataset.index);
@@ -39,24 +37,17 @@ listCards.addEventListener("click", (e) => {
   }
 });
 
-
-
 //filtreleme
 const searchInput = document.querySelector("#filter");
-let inputValue ="";
+let inputValue = "";
 searchInput.addEventListener("input", (e) => {
-    inputValue = e.target.value;
-    console.log(inputValue, "inputenrbru");
-  });
+  inputValue = e.target.value;
+  console.log(inputValue, "inputEbru");
+});
 
 const searchBtnEle = document.getElementById("searchBtn");
-
-searchBtnEle.addEventListener("click", () => {  
-    console.log(inputValue,"inputun değeri");   
-    filteredSongs(inputValue,data)
-  });
-
-
-
-
-
+searchBtnEle.addEventListener("click", (e) => {
+  console.log(inputValue, "inputun değeri");
+  filteredSongs(inputValue, data.tracks);
+  e.preventDefault();
+});
