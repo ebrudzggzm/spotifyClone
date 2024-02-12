@@ -1,12 +1,12 @@
 const songList = document.querySelector("#list");
-const player = document.querySelector('#audio');
+const player = document.querySelector("#audio");
 
 export const renderSongList = (data) => {
   console.log("gelenveri:", data);
 
-   const cardsHTML = data
-   .map(
-     (item,index) =>
+  const cardsHTML = data
+    .map(
+      (item, index) =>
         ` <div class="card">
                     <figure class="figure">
                         <img src=${item.share.image}
@@ -18,18 +18,22 @@ export const renderSongList = (data) => {
                    
                     <h4>${item.subtitle}</h4>
                     <p>${item.title}</p>
-                </div> `).join("");
+                </div> `
+    )
+    .join("");
 
   songList.innerHTML = cardsHTML;
 };
 
+// iki parametre ile olabilir
+export const playerDiv = (tracksArray, trackIndex) => {
+  console.log("gelenveriPlay:", tracksArray);
+  player.innerHTML = "";
 
-
-
-export const playerDiv = (play) => {
-     console.log("gelenveri:", play);
-    const playerListHtml = data.map((item)=>{`  <div id="text">
-    <img  id="imageAudio" src="${item.share.image}>
+  console.log(tracksArray[trackIndex], trackIndex);
+  const item = tracksArray[trackIndex];
+  const playerListHtml = `<div id="text">
+    <img  id="imageAudio" src=${item.share.image}>
     <div>
         <h4>Şu an oynatılıyor</h4>
         <p>${item.title}</p>
@@ -39,14 +43,73 @@ export const playerDiv = (play) => {
 <div id="player">
     <audio controls>
         <source
-            src=${item.hub.actions[0].uri}>
+            src=${item.hub.actions[1].uri}  data-id = ${item.value} >
         Tarayıcınız audio etiketini desteklemiyor.
     </audio>
-</div>`
+</div>`;
 
-    }).join('');
-
-    player.innerHTML = playerListHtml;
-
+  player.innerHTML = playerListHtml;
 };
 
+
+// tek parametre ile olabilir,daha sadeleştirilmiş olarak,dizi indexi main.js den geldi.
+export const playerDiv2 = (item) => {
+  player.innerHTML = "";
+
+  
+  const playerListHtml = `<div id="text">
+      <img  id="imageAudio" src=${item.share.image}>
+      <div>
+          <h4>Şu an oynatılıyor</h4>
+          <p>${item.title}</p>
+      </div>
+     
+  </div>
+  <div id="player">
+      <audio controls>
+          <source
+              src=${item.hub.actions[1].uri}  data-id = ${item.value} >
+          Tarayıcınız audio etiketini desteklemiyor.
+      </audio>
+  </div>`;
+
+  player.innerHTML = playerListHtml;
+};
+// export const playerDiv = (play,indexValue) => {
+//     console.log("gelenveriPlay:", play);
+//     player.innerHTML ="";
+
+//     const playerListHtml = play.map((item)=>
+
+//     if(indexValue === item.)
+//     `<div id="text">
+//     <img  id="imageAudio" src=${item.share.image}>
+//     <div>
+//         <h4>Şu an oynatılıyor</h4>
+//         <p>${item.title}</p>
+//     </div>
+
+// </div>
+// <div id="player">
+//     <audio controls>
+//         <source
+//             src=${item.hub.actions[1].uri}  >
+//         Tarayıcınız audio etiketini desteklemiyor.
+//     </audio>
+// </div>`
+
+//     ).join('');
+
+//     player.innerHTML = playerListHtml;
+
+// };
+
+
+
+//filtreleme fonksiyonu 
+
+export const filteredSongs = (input, data) =>{
+    console.log("gelenveriFilter:", input);
+    const filteredValue = data.map(item => item.subtitle.toLowerCase().trim().includes(input));
+    console.log(filteredValue);
+}
