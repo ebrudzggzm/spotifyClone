@@ -143,14 +143,13 @@ main .songs {
 .songs #title {
   text-transform: capitalize;
   padding: 20px;
-  
 }
 
 .songs #list {
   display: grid;
   padding: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  margin: 0 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin: 0 10px;
   // ya da
   //   padding: 20px;
   //   display: flex;
@@ -210,8 +209,7 @@ main .songs {
 
     h4 {
       margin-bottom: 6px;
-
-    }  
+    }
   }
 }
 
